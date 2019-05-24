@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello world</h1>
+    <button onclick="increment()">+1</button>
+    <script>
+      const socket = io.connect("/");
+      i = 0;
+
+      function increment() {
+        console.log("he");
+        socket.emit("inc", { last: i });
+      }
+
+      socket.on("cool", data => {
+        console.log(data);
+        i++;
+        document.querySelector("h1").innerHTML = i;
+      });
+    </script>
+  </body>
+</html>
